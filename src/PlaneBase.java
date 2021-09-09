@@ -1,3 +1,5 @@
+package src;
+
 public abstract class PlaneBase implements Comparable<PlaneBase> {
 
     private String planeNumber;
