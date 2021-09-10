@@ -53,8 +53,19 @@ class DisplayPartiallySorted extends DisplayPartiallySortedBase {
     @Override
     Plane[] sort() {
         
-        return null;
     }
-
+    
+    Plane[] insertSort(Plane[] schedule, Plane[] extraPlanes){
+        for(int i = 0; i < extraPlanes.length; i++) {
+            Plane temp = extraPlanes[i];
+            int j = schedule.length;
+            while(j > 0 && temp.compareTo(schedule[j-1]) < 0){
+                schedule[j] = schedule[j - 1];
+                j--;
+            }
+            schedule[j] = temp;
+        }
+        return schedule;
+    }
     /* Implement all the necessary methods here */
 }
