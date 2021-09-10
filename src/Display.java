@@ -6,8 +6,14 @@ class DisplayRandom extends DisplayRandomBase {
         super(csvLines);
     }
 
-    // @Override
-    public void sort(Plane[] data, int low, int hight) {
+    @Override
+    public Plane[] sort() {
+        quickSort(getData(),0,getData().length - 1);
+        return getData();
+    }
+
+    public void quickSort(Plane[] data,int low, int hight){
+        
         int i = low;
         int j = hight;
         Plane index = data[i];
@@ -26,13 +32,9 @@ class DisplayRandom extends DisplayRandomBase {
             
         }
         data[i] = index;
-        sort(data, low, i - 1);
-        sort(data, i + 1, hight);
+        quickSort(data, low, i - 1);
+        quickSort(data, i + 1, hight);
 
-    }
-
-    public void quickSort(Plane[] data){
-        sort(data,0,data.length - 1);
     }
 
 
@@ -52,9 +54,10 @@ class DisplayPartiallySorted extends DisplayPartiallySortedBase {
 
     @Override
     Plane[] sort() {
-        
+        insertSort(getSchedule(), getExtraPlanes());
+        return getSchedule();
     }
-    
+   /* Implement all the necessary methods here */ 
     Plane[] insertSort(Plane[] schedule, Plane[] extraPlanes){
         for(int i = 0; i < extraPlanes.length; i++) {
             Plane temp = extraPlanes[i];
@@ -67,5 +70,5 @@ class DisplayPartiallySorted extends DisplayPartiallySortedBase {
         }
         return schedule;
     }
-    /* Implement all the necessary methods here */
+
 }
