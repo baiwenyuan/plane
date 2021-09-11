@@ -12,12 +12,12 @@ class DisplayRandom extends DisplayRandomBase {
         return getData();
     }
 
-    public void quickSort(Plane[] data,int low, int hight){
+    public void quickSort(Plane[] data,int low, int height){
         
         int i = low;
-        int j = hight;
+        int j = height;
         Plane index = data[i];
-        if(low >= hight){
+        if(low >= height){
             return;
         }
         while(i<j){
@@ -33,7 +33,7 @@ class DisplayRandom extends DisplayRandomBase {
         }
         data[i] = index;
         quickSort(data, low, i - 1);
-        quickSort(data, i + 1, hight);
+        quickSort(data, i + 1, height);
 
     }
 

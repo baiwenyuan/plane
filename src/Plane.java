@@ -8,8 +8,9 @@ public class Plane extends PlaneBase {
 
     @Override
     public int compareTo(PlaneBase o) {
-        int thisTime = Integer.valueOf(this.getTime()).intValue();
-        int oTime = Integer.valueOf(o.getTime()).intValue();
+
+        int thisTime = stringToInt(this.getTime());
+        int oTime = stringToInt(o.getTime());
         int result = thisTime - oTime;       
         if(result > 0) {
             return 1;
@@ -28,4 +29,9 @@ public class Plane extends PlaneBase {
     }
 
     /* Implement all the necessary methods of Plane here */
+
+    public int stringToInt(String time){
+        int intTime = Integer.valueOf(time.replace(":", "")).intValue();
+        return intTime;
+    }
 }
