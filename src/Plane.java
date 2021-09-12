@@ -30,8 +30,7 @@ public class Plane extends PlaneBase {
 
     /* Implement all the necessary methods of Plane here */
 
-    public int stringToInt(String time){
-        int intTime = Integer.valueOf(time.replace(":", "")).intValue();
-        return intTime;
+    public int stringToInt(String time) {
+        return Integer.parseInt(time.replace(":", ""));
     }
 }

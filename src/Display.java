@@ -12,28 +12,41 @@ class DisplayRandom extends DisplayRandomBase {
         return getData();
     }
 
-    public void quickSort(Plane[] data,int low, int height){
-        
-        int i = low;
-        int j = height;
-        Plane index = data[i];
-        if(low >= height){
+    public void quickSort(Plane[] data,int begin, int end) {
+        if(begin >= end) {
             return;
         }
-        while(i<j){
-            while (i < j && data[j].compareTo(index) >= 0) 
-                j--;
-            if (i < j) 
-                data[i++] = data[j];
-            while(i < j && data[j].compareTo(index) < 0)
-                i++;
-            if(i < j)
-                data[j--] = data[i];
-            
+        int p1 = begin;
+        int p2 = end;
+        Plane index = data[p1];
+        boolean dr = true;
+
+L1:     while(p1 < p2) {
+            if (dr) {
+                for (int i = p2; i > p1; i--) {
+                    if (data[i].compareTo(index) <= 0) {
+                        data[p1++] = data[i];
+                        p2 = i;
+                        dr = !dr;
+                        continue L1;
+                    }
+                }
+                p2 = p1;
+            } else {
+                for (int i = p1; i < p2; i++) {
+                    if (data[i].compareTo(index) >= 0) {
+                        data[p2--] = data[i];
+                        p1 = i;
+                        dr = !dr;
+                        continue L1;
+                    }
+                }
+                p1 = p2;
+            }
         }
-        data[i] = index;
-        quickSort(data, low, i - 1);
-        quickSort(data, i + 1, height);
+        data[p1] = index;
+        quickSort(data, begin, p1 - 1);
+        quickSort(data, p1 + 1, end);
 
     }
 
@@ -54,21 +67,24 @@ class DisplayPartiallySorted extends DisplayPartiallySortedBase {
 
     @Override
     Plane[] sort() {
-        insertSort(getSchedule(), getExtraPlanes());
-        return getSchedule();
+        return insertSort(getSchedule(), getExtraPlanes());
     }
    /* Implement all the necessary methods here */ 
     Plane[] insertSort(Plane[] schedule, Plane[] extraPlanes){
+        Plane[] newSchedule = new Plane[schedule.length + extraPlanes.length];
+        for(int k = 0; k < schedule.length; k++) {
+            newSchedule[k] = schedule[k];
+        }
         for(int i = 0; i < extraPlanes.length; i++) {
             Plane temp = extraPlanes[i];
-            int j = schedule.length;
-            while(j > 0 && temp.compareTo(schedule[j-1]) < 0){
-                schedule[j] = schedule[j - 1];
+            int j = schedule.length + i;
+            while(j > 0 && temp.compareTo(newSchedule[j-1]) < 0){
+                newSchedule[j] = newSchedule[j-1];
                 j--;
             }
-            schedule[j] = temp;
+            newSchedule[j] = temp;
         }
-        return schedule;
+        return newSchedule;
     }
 
 }

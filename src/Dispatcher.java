@@ -38,7 +38,7 @@ public class Dispatcher extends DispatcherBase {
 
 /* Add any additional helper classes here */
 class Linked  {
-    private class Node {
+    private static class Node {
         public Plane t;
         public Node next;
 
@@ -112,7 +112,7 @@ class Linked  {
         return delNode.t.getPlaneNumber();
     }
     public String allocate(String currentTime) {
-        if(this.head == null || Integer.valueOf(this.head.t.getTime().replace(":", "")).intValue() > Integer.valueOf(currentTime.replace(":", "")).intValue() + 5)
+        if(this.head == null || Integer.parseInt(this.head.t.getTime().replace(":", "")) > Integer.parseInt(currentTime.replace(":", "")) + 5)
             return null;
         else return this.removeFirst();
     }
