@@ -8,12 +8,12 @@ class DisplayRandom extends DisplayRandomBase {
 
     @Override
     public Plane[] sort() {
-        quickSort(getData(),0,getData().length - 1);
+        quickSort(getData(), 0, getData().length - 1);
         return getData();
     }
 
-    public void quickSort(Plane[] data,int begin, int end) {
-        if(begin >= end) {
+    public void quickSort(Plane[] data, int begin, int end) {
+        if (begin >= end) {
             return;
         }
         int p1 = begin;
@@ -21,7 +21,8 @@ class DisplayRandom extends DisplayRandomBase {
         Plane index = data[p1];
         boolean dr = true;
 
-L1:     while(p1 < p2) {
+        L1:
+        while (p1 < p2) {
             if (dr) {
                 for (int i = p2; i > p1; i--) {
                     if (data[i].compareTo(index) <= 0) {
@@ -69,17 +70,18 @@ class DisplayPartiallySorted extends DisplayPartiallySortedBase {
     Plane[] sort() {
         return insertSort(getSchedule(), getExtraPlanes());
     }
-   /* Implement all the necessary methods here */ 
-    Plane[] insertSort(Plane[] schedule, Plane[] extraPlanes){
+
+    /* Implement all the necessary methods here */
+    Plane[] insertSort(Plane[] schedule, Plane[] extraPlanes) {
         Plane[] newSchedule = new Plane[schedule.length + extraPlanes.length];
-        for(int k = 0; k < schedule.length; k++) {
+        for (int k = 0; k < schedule.length; k++) {
             newSchedule[k] = schedule[k];
         }
-        for(int i = 0; i < extraPlanes.length; i++) {
+        for (int i = 0; i < extraPlanes.length; i++) {
             Plane temp = extraPlanes[i];
             int j = schedule.length + i;
-            while(j > 0 && temp.compareTo(newSchedule[j-1]) < 0){
-                newSchedule[j] = newSchedule[j-1];
+            while (j > 0 && temp.compareTo(newSchedule[j - 1]) < 0) {
+                newSchedule[j] = newSchedule[j - 1];
                 j--;
             }
             newSchedule[j] = temp;

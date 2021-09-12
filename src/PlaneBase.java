@@ -2,8 +2,8 @@ package src;
 
 public abstract class PlaneBase implements Comparable<PlaneBase> {
 
-    private String planeNumber;
-    private String time;
+    private final String planeNumber;
+    private final String time;
 
     public PlaneBase(String planeNumber, String time) {
         this.planeNumber = planeNumber;

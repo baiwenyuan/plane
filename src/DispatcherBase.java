@@ -37,18 +37,18 @@ public abstract class DispatcherBase {
      *
      * @param planeNumber string with three letters, followed by four numbers.
      *                    Example: "ABC1243", "ENC3455"
-     * @param time represents time in 24 hour format.
-     *             Example: "9:24", "15:32"
+     * @param time        represents time in 24 hour format.
+     *                    Example: "9:24", "15:32"
      */
     public abstract void addPlane(String planeNumber, String time);
 
     /**
      * Allocates the landing slot to the next plane in line if it is already
      * waiting, or if it arrives no later than 5 minutes from the current time.
-     *
+     * <p>
      * Removes the plane that has been granted a landing slot and returns its number.
      * Otherwise, returns null.
-     *
+     * <p>
      * The complexity must be O(1).
      *
      * @param currentTime represents the current time in 24 hour format.
@@ -69,6 +69,7 @@ public abstract class DispatcherBase {
 
     /**
      * Returns true if the plane is in the system, otherwise return false.
+     *
      * @param planeNumber string with 3 letters, followed by 4 numbers.
      *                    Example: "ABC1235", "ENC3454"
      * @return true if the plane is present, false otherwise

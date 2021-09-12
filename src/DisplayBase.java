@@ -21,7 +21,9 @@ package src;
 
 abstract class DisplayRandomBase {
 
-    /** Array of planes in the departure display */
+    /**
+     * Array of planes in the departure display
+     */
     private Plane[] data;
 
     /**
@@ -62,22 +64,26 @@ abstract class DisplayRandomBase {
 
 abstract class DisplayPartiallySortedBase {
 
-    /** Array of sorted planes in the schedule */
+    /**
+     * Array of sorted planes in the schedule
+     */
     private Plane[] schedule;
-    /** Array of new planes to be added to the schedule */
+    /**
+     * Array of new planes to be added to the schedule
+     */
     private Plane[] extraPlanes;
 
     /**
      * Reads the schedule of planes and the extra planes and stores
      * them in this.schedule and this.extraPlanes.
      *
-     * @param schedule list of lines containing sorted schedule of planes
-     *                 in CSV format, no header
+     * @param schedule    list of lines containing sorted schedule of planes
+     *                    in CSV format, no header
      * @param extraPlanes list of lines containing unsorted extra planes
      *                    in CSV format, no header
      */
     public DisplayPartiallySortedBase(String[] schedule,
-            String[] extraPlanes) {
+                                      String[] extraPlanes) {
         this.schedule = CSVReader.readPlanesFromLines(schedule);
         this.extraPlanes = CSVReader.readPlanesFromLines(extraPlanes);
     }
@@ -92,20 +98,21 @@ abstract class DisplayPartiallySortedBase {
     }
 
     /**
+     * Sets the schedule of sorted planes to the given array.
+     *
+     * @param schedule sorted schedule to set
+     */
+    public void setSchedule(Plane[] schedule) {
+        this.schedule = schedule;
+    }
+
+    /**
      * Returns the array of extra planes to be added to the schedule.
      *
      * @return extra planes
      */
     public Plane[] getExtraPlanes() {
         return extraPlanes;
-    }
-
-    /** Sets the schedule of sorted planes to the given array.
-     *
-     * @param schedule sorted schedule to set
-     */
-    public void setSchedule(Plane[] schedule) {
-        this.schedule = schedule;
     }
 
     /**
