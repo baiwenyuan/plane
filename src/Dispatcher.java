@@ -3,7 +3,7 @@ package src;
 public class Dispatcher extends DispatcherBase {
 
     Linked system = new Linked();
-    
+
     @Override
     public int size() {
         return system.getSize();
@@ -67,28 +67,30 @@ class Linked  {
         this.head = new Node(t, head);
         this.size++;
     }
-//    public void addLast(Plane t) {
-//        this.add(t);
-//    }
 
     public void add(Plane t) {
-        if (this.size == 0) {
+        if (this.size == 0 || t.compareTo(this.head.t) < 0) {
             this.addFirst(t);
             return;
         }
-
-        Node postNode = this.head;
-//        for(int i = 0; i < this.size && preNode.t.getTime().compareTo(); i++) {
-//            preNode = preNode.next;
-//        }
-        while(t.compareTo(postNode.t) > 0) {
-            Node node = new Node(t);
-            node.next = postNode.next;
-            postNode.next = node;
-            this.size++;
+        Node preNode = this.head;
+        Node node = new Node(t);
+        while(preNode.next != null) {
+            if (t.compareTo(preNode.next.t) > 0) {
+                preNode = preNode.next;
+            } else {
+                node.next = preNode.next;
+                preNode.next = node;
+                size++;
+                return;
+            }
         }
+        preNode.next = node;
+        size++;
+        return;
     }
-     public String remove(String planeNumber) {
+
+    public String remove(String planeNumber) {
          if(head == null || this.getNode(planeNumber) == null) {
              return null;
          }
@@ -99,7 +101,7 @@ class Linked  {
          cur.next = this.getNode(planeNumber).next;
          this.size--;
          return planeNumber;
-     }
+    }
 
     public String removeFirst() {
         if(this.head == null) {
